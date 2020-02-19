@@ -5,7 +5,7 @@ import os
 import mxnet as mx
 
 try:
-    from .Module import *
+    from Module import *
 except (SystemError, ModuleNotFoundError):
     from Module import *
 

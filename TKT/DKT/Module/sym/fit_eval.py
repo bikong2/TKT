@@ -31,6 +31,9 @@ def eval_f(_net, test_data, ctx=None):
     if ctx is not None:
         _net = set_device(_net, ctx)
 
+    #print(len(test_data))
+    #print(len(test_data[0]))
+    #print(len(test_data[0][0]))
     for (data, data_mask, label, pick_index, label_mask) in tqdm(test_data, "evaluating"):
         with torch.no_grad():
             output, _ = _net(data, data_mask)
@@ -43,6 +46,8 @@ def eval_f(_net, test_data, ctx=None):
             ground_truth.extend(label[i][:length])
             prediction.extend(pred[i][:length])
             pred_labels.extend([0 if p < 0.5 else 1 for p in pred[i][:length]])
+            #print(pred[i][:length])
+            #print([0 if p < 0.5 else 1 for p in pred[i][:length]])
 
     auc = roc_auc_score(ground_truth, prediction)
     precision, recall, f1, _ = precision_recall_fscore_support(ground_truth, pred_labels)

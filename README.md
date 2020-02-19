@@ -52,7 +52,9 @@ edudata download ktbd
 ```
 
 ### Trick
-
+* ku_num 表示训练题库的知识点或者是题目的数量；可以使用如下命令计算得到  
+`edudata kt_stat train.json`   
+但由于知识点或者题目的id不是从0开始的，所以最好是比计算出来的值稍微大一些即可。
 * DKT: `hidden_num` is usually set to the nearest hundred number to the `ku_num`
 * EmbedDKT: `latent_dim` is usually set to a value litter than or equal to `\sqrt(hidden_num * ku_num)`
 * DKVMN: `key_embedding_dim = key_memory_state_dim` and `value_embedding_dim = value_memory_state_dim`
